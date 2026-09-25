@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulador de Desperdicio de Agua Escolar</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Librería Chart.js para la gráfica -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  <header class="header">
+    <h1>Simulador de Desperdicio de Agua Escolar</h1>
+    <p>Modelo lineal para medir el volumen de agua recolectado en baños y lavamanos.</p>
+  </header>
+
+  <main class="container">
+    
+    <!-- Ficha Técnica -->
+    <section class="card">
+      <h2>Ficha Técnica del Modelo</h2>
+      <ul class="info-list">
+        <li><strong>Fenómeno:</strong> Desperdicio de agua en baños y lavamanos escolares.</li>
+        <li><strong>Variable X (Independiente):</strong> Tiempo que el grifo permanece abierto (segundos).</li>
+        <li><strong>Variable Y (Dependiente):</strong> Volumen de agua recogido (millilitros).</li>
+        <li><strong>Representación Matemática:</strong> <span class="equation">Y = 100 · X + 0</span></li>
+      </ul>
+    </section>
+
+    <!-- Explorador de Escenarios -->
+    <section class="card">
+      <h2>Explorador de Escenarios</h2>
+      <p>Selecciona o ingresa el tiempo (X) para calcular el desperdicio (Y):</p>
+      
+      <div class="preset-buttons">
+        <button class="btn" onclick="setScenario(12)">Escenario Bajo (12s)</button>
+        <button class="btn" onclick="setScenario(18)">Escenario Medio (18s)</button>
+        <button class="btn" onclick="setScenario(26)">Escenario Alto (26s)</button>
+      </div>
+
+      <div class="input-group">
+        <label for="timeInput">Tiempo de grifo abierto X (segundos):</label>
+        <input type="number" id="timeInput" value="18" min="0" max="100" oninput="updateSimulation()">
+      </div>
+
+      <div class="results-grid">
+        <div class="result-box">
+          <small>Volumen Recogido (Y)</small>
+          <span id="volumeResult">1800 mL</span>
+        </div>
+        <div class="result-box">
+          <small>Equivalente en Litros</small>
+          <span id="litersResult">1.80 L</span>
+        </div>
+        <div class="result-box">
+          <small>Botellas de 500 mL</small>
+          <span id="bottlesResult">3.6 botellas</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tabla y Gráfica -->
+    <div class="grid-2col">
+      
+      <!-- Tabla de Datos -->
+      <section class="card">
+        <h2>Registro de Datos (10 Sujetos)</h2>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Sujeto</th>
+              <th>Tiempo X (s)</th>
+              <th>Volumen Y (mL)</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody">
+            <!-- Rellenado por JavaScript -->
+          </tbody>
+        </table>
+      </section>
+
+      <!-- Gráfico X-Y -->
+      <section class="card">
+        <h2>Gráfica de Dispersión X - Y</h2>
+        <div class="chart-container">
+          <canvas id="scatterChart"></canvas>
+        </div>
+      </section>
+
+    </div>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
